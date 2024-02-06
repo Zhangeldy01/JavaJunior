@@ -12,7 +12,7 @@ public class OliveOil implements HealthyFood {
 
     @Override
     public boolean getFats() {
-        return false;
+        return true;
     }
 
     @Override

@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) throws ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException {
 //        Car car = new Car("BMW");
 //        System.out.println(car.name);
-        Class<?> car = Class.forName("Car");
+        Class<?> car = Class.forName("lesson2.Car");
         Constructor<?>[] constructors = car.getConstructors();
         //System.out.println(constructors);
 

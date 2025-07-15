@@ -15,7 +15,7 @@ public class Dog extends Animal {
     // переопределение метода makeSound()
     @Override
     public void makeSound() {
-        System.out.println("Собака лает: " +"Woof, woof!");
+        System.out.println(" Собака лает: " +"Woof, woof!");
     }
 
 }

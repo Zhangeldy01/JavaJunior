@@ -9,9 +9,11 @@ import static seminar3.task2.ToDoListApp.*;
 
 public class Program {
     public static void main(String[] args) {
+
         List<ToDoVers2> tasks;
         File f = new File(FILE_JSON);
         if (f.exists() && !f.isDirectory()) {
+            // Загрузка задач из JSON-документа
             tasks = loadTasksFromFile(FILE_JSON);
         }
         else {

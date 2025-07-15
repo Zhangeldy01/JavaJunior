@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class Main4 {
     public static void main(String[] args) throws Exception {
         ArrayList<String> list = null;
-        list = (ArrayList<String>) deserialObj("ser");
+        list = (ArrayList<String>) deserialObj("/Users/zhangeldy/Documents/Java Junior/JavaJunior/ser.txt");
         System.out.println(list);
     }
     public static void serialObj(Object o, String file) throws IOException{

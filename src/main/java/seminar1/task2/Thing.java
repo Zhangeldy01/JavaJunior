@@ -6,5 +6,5 @@ public interface Thing {
      * @return наименование вещи
      */
 
-    String getName();
+    String getName(); // Возвращаем название вещи
 }

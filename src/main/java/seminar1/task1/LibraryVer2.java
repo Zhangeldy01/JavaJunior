@@ -15,22 +15,25 @@ public class LibraryVer2 {
         );
 
         // Поиск книг, написанных автором "Лев Толстой"
-        List<Book> authorBooks = books.stream().filter(book -> "Лев Толстой".equals(book.getAuthor())).toList();
+        List<Book> authorBooks = books.stream()
+                .filter(book -> "Лев Толстой"
+                .equals(book.getAuthor()))
+                .toList();
         System.out.println("Книги Льва Толстого\n" + authorBooks);
 
         // Поиск книг, изданных после 1866 года
         List<Book> booksAfter1866 =
                 books.stream()
-                        .filter(book -> book.getYear() > 1866)
-                        .toList();
+                .filter(book -> book.getYear() > 1866)
+                .toList();
         System.out.println("Книги опубликованные после 1866 года:\n" + booksAfter1866);
 
         // Поиск уникальных названий книг
-        List<String> uniqueTitles =
-                books.stream()
-                        .map(Book::getTitle)
-                        .distinct()
-                        .toList();
+        List<String> uniqueTitles = books.stream()
+                //.map(book -> book.getTitle()) // строка 32 и 33 идентичны
+                .map(Book::getTitle)
+                .distinct()
+                .toList();
         System.out.println("Уникальные наименования книг:\n" + uniqueTitles);
     }
 

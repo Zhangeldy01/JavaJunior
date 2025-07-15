@@ -6,3 +6,4 @@ public class Notebook implements Thing {
         return "Блокнот";
     }
 }
+

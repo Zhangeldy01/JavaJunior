@@ -4,7 +4,11 @@ import java.io.*;
 
 public class Main5 {
     public static void main(String[] args) throws Exception{
-        MyFCs myFCs = (MyFCs) deserialObj("ser.txt");
+
+        MyFCs myFCs = new MyFCs("Sinitsyn", "Alex", "Amirovich");
+        serialObj(myFCs, "ser.txt");
+
+        MyFCs myFCs1 = (MyFCs) deserialObj("/Users/zhangeldy/Documents/Java Junior/JavaJunior/ser.txt");
         System.out.println(myFCs);
 
     }
@@ -26,7 +30,7 @@ public class Main5 {
         public String fName;
         public String patronymic;
 
-        private static final long serialVersionUID = 1L;
+        private static final long serialVersionUID = 1L; // версия класса
 
         public MyFCs(String lName, String fName, String patronymic) {
             this.lName = lName;

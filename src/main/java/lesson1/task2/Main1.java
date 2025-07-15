@@ -9,15 +9,17 @@ public class Main1 {
     public static void main(String[] args) {
        List<String> list = Arrays.asList("Hi", "world", "!", "I", "was", "born", "!");
 
-//        1 вариант решения без stream API
+//        1 вариант решения со stream API
 //        list = list.stream().filter(str -> str.length() > 3).collect(Collectors.toList());
 //
 //        for(String item : list){
-//            System.out.println(item);
+//            System.out.println(item); // выведет слова длина которых больше 3-х символов
 //        }
 
-//        2 вариант решения c stream API
-//        list.stream().filter(str -> str.length() > 3).forEach(System.out::println);
+//        2 вариант решения cо (stream API для преобразования массивов данных) промежуточные
+        list.stream().filter(str -> str.length() > 3).forEach(System.out::println);
+
+        // можно создавать цепь фильтров
         list.stream().filter(str -> str.length() > 3).filter(str -> str.contains("b")).forEach(System.out::println);
 
         System.out.println("\nвозводим в квадрат");
@@ -32,6 +34,7 @@ public class Main1 {
 
         Arrays.asList(1,10,3,14,1,3,5).stream().sorted().distinct().map(chislo -> "число: " + chislo + ". квадрат числа - " + chislo * chislo).forEach(System.out::println);
 
+        // терминальные (возвращают н-р: результат, коллекцию)
         System.out.println(Arrays.asList(1,10,3,14,1,3,5).stream().sorted().distinct().findFirst().get());
 
     }

@@ -16,11 +16,15 @@ public class Student {
     private String name;
     private int age;
 
+    public Student() {
+    }
+
     public Student(String name, int age) {
         this.name = name;
         this.age = age;
     }
 
+    // Фабричный метод
     public static Student create() {
         return new Student(names[random.nextInt(names.length)], random.nextInt(20, 26));
     }
@@ -37,9 +41,6 @@ public class Student {
 
     public void updateName() {
         name = names[random.nextInt(names.length)];
-    }
-
-    public Student() {
     }
 
     public int getId() {

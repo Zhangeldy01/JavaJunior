@@ -16,7 +16,7 @@ import java.util.Random;
  * с использованием провайдера JDBC.
  */
 
-public class Program {
+public class Program {//  /Users/zhangeldy/Documents/Java Junior/JavaJunior/src/main/resources
     private final static Random random = new Random();
     public static void main(String[] args) throws SQLException {
         String url = "jdbc:mysql://localhost:3306/";
@@ -49,7 +49,7 @@ public class Program {
         for (var student : students)
             System.out.println(student);
         System.out.println("Read data successfully");
-
+//
         // Обновление данных
         for (var student : students) {
             student.updateName();

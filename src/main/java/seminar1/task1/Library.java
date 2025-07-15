@@ -41,7 +41,7 @@ public class Library {
                 booksAfter1866.add(book);
             }
         }
-        System.out.println("Книги опубликованные после 1866 года:\n" + booksAfter1866);
+        System.out.println("\nКниги опубликованные после 1866 года:\n" + booksAfter1866);
 
         // Поиск уникальных названий книг
         List<String> uniqueTitles = new ArrayList<>();

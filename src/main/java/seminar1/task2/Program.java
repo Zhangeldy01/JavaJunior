@@ -16,7 +16,6 @@ package seminar1.task2;
         4. Осуществлять балансировку онлайн корзины с целью получения такого набора продуктов питания,
             который включает все основные питательные элементы.
 
-
         Особенности бизнес-логики сервиса UMarket.
 
         Модуль онлайн покупок должен осуществлять контроль за попадающими в покупательскую корзину продуктами, а именно:
@@ -38,16 +37,27 @@ package seminar1.task2;
 
         */
 
-import java.util.Scanner;
+import java.util.Scanner; // Импорт класса Scanner
 
+
+/**
+ * Класс Program - основная точка входа в приложение U-Market.
+ * Предоставляет консольный интерфейс для взаимодействия с магазином.
+ */
 public class Program {
-    private final static Scanner scanner = new Scanner(System.in);
-    public static void main(String[] args) {
-        UMarket market = new UMarket();
-        System.out.println("Добро пожаловать в магазин U-Market");
 
-        while (true)
-        {
+    // Создание статического объекта Scanner для чтения ввода пользователя
+    private final static Scanner scanner = new Scanner(System.in);
+
+    /**
+     * Основной метод программы.
+     * @param args Аргументы командной строки (не используются).
+     */
+    public static void main(String[] args) {
+        UMarket market = new UMarket(); // Создание экземпляра магазина UMarket
+        System.out.println("Добро пожаловать в магазин U-Market"); // Вывод приветственного сообщения
+
+        while (true) {  // Бесконечный цикл для работы с меню
             System.out.println("================================================================");
             System.out.println("0 - Завершение работы приложения");
             System.out.println("1 - Отобразить полный список товаров");
@@ -55,76 +65,71 @@ public class Program {
             System.out.println("3 - Сформировать онлайн корзину из полуфабрикатов");
             System.out.println("4 - Сформировать онлайн корзину из продуктов для приготовления");
             System.out.println("5 - Сформировать онлайн корзину из любых продовольственные товаров");
-            System.out.println("Выберите пункт меню: ");
+            System.out.println("Выберите пункт меню: "); // Запрос выбора пункта меню
 
-            if (scanner.hasNextInt())
-            {
-                int no = scanner.nextInt();
-                scanner.nextLine();
-                switch (no) {
-                    case 0 -> {
-                        System.out.println("Завершение работы приложения.");
-                        return;
+            if (scanner.hasNextInt()) { // Проверка, является ли введенное значение целым числом
+                int no = scanner.nextInt(); // Чтение введенного числа
+                scanner.nextLine(); // Считывание символа новой строки после числа
+                switch (no) {  // Выбор действия в зависимости от введенного числа
+                    case 0 -> {  // Если выбрано 0
+                        System.out.println("Завершение работы приложения."); // Вывод сообщения о завершении работы
+                        return; // Завершение работы программы
                     }
-                    case 1 -> {
-                        System.out.println("Список товаров:");
-                        market.printThings(Thing.class);
+                    case 1 -> { // Если выбрано 1
+                        System.out.println("Список товаров:"); // Вывод заголовка
+                        market.printThings(Thing.class); // Вывод списка всех товаров
                     }
-                    case 2 -> CreateCart(Snack.class, market);
-                    case 3 -> CreateCart(SemiFinishedFood.class, market);
-                    case 4 -> CreateCart(HealthyFood.class, market);
-                    case 5 -> CreateCart(Food.class, market);
-                    default -> System.out.println("Пункт меню не существует.\nПожалуйста, повторите попытку ввода.");
+                    case 2 -> CreateCart(Snack.class, market); // Если выбрано 2, вызываем метод CreateCart для создания корзины со снеками
+                    case 3 -> CreateCart(SemiFinishedFood.class, market); // Если выбрано 3, вызываем метод CreateCart для создания корзины с полуфабрикатами
+                    case 4 -> CreateCart(HealthyFood.class, market); // Если выбрано 4, вызываем метод CreateCart для создания корзины со здоровой пищей
+                    case 5 -> CreateCart(Food.class, market); // Если выбрано 5, вызываем метод CreateCart для создания корзины с любыми продуктами
+                    default -> System.out.println("Пункт меню не существует.\nПожалуйста, повторите попытку ввода."); // Если введен некорректный пункт меню
                 }
+            } else { // Если введенное значение не является целым числом
+                System.out.println("Некорректный пункт меню.\nПожалуйста, повторите попытку ввода."); // Вывод сообщения об ошибке
+                scanner.nextLine(); // Считывание некорректного ввода
             }
-            else{
-                System.out.println("Некорректный пункт меню.\nПожалуйста, повторите попытку ввода.");
-                scanner.nextLine();
-            }
-
         }
-
     }
 
     /**
      * Сформировать онлайн корзину из продовольственных товаров
-     * @param market Магазин и список товаров
-     * @param <T> Тип товара
+     * @param clazz  Класс продуктов, которые может содержать корзина.
+     * @param market Магазин и список товаров.
+     * @param <T>    Тип товара.
      */
     static <T extends Food> void CreateCart(Class<T> clazz, UMarket market) {
-        Cart<T> cart = new Cart<>(clazz, market);
-        while (true)
-        {
-            System.out.println("Список доступных товаров:");
-            System.out.println("[0] Завершение формирования корзины + балансировка");
-            market.printThings(clazz);
-            System.out.print("Укажите номер товара для добавления: ");
-            if (scanner.hasNextInt()) {
-                int no = scanner.nextInt();
-                scanner.nextLine();
-                if (no == 0) {
-                    cart.cardBalancing();
-                    System.out.println("Ваша корзина содержит продукты:");
-                    cart.printFoodstuffs();
-                    return;
-                }
-                else {
-                    T thing = market.getThingByIndex(clazz, no);
-                    if (thing == null) {
-                        System.out.println("Некорректный номер товара.\nПожалуйста, повторите попытку ввода.");
-                        continue;
+        Cart<T> cart = new Cart<>(clazz, market); // Создание новой корзины
+        while (true) { // Бесконечный цикл для добавления товаров в корзину
+            System.out.println("Список доступных товаров:"); // Вывод заголовка
+            System.out.println("[0] Завершение формирования корзины + балансировка"); // Вывод пункта меню для завершения формирования корзины
+            market.printThings(clazz); // Вывод списка доступных товаров
+            System.out.print("Укажите номер товара для добавления: "); // Запрос ввода номера товара
+
+            if (scanner.hasNextInt()) { // Проверка, является ли введенное значение целым числом
+                int no = scanner.nextInt(); // Чтение введенного числа
+                scanner.nextLine(); // Считывание символа новой строки после числа
+                if (no == 0) { // Если выбрано завершение формирования корзины
+                    cart.cardBalancing(); // Балансировка корзины
+                    System.out.println("Ваша корзина содержит продукты:"); // Вывод сообщения
+                    cart.printFoodstuffs(); // Вывод списка продуктов в корзине
+                    return; // Завершение работы метода
+                } else { // Если выбран номер товара
+                    T thing = market.getThingByIndex(clazz, no); // Получение товара по индексу
+                    if (thing == null) { // Если товар не найден
+                        System.out.println("Некорректный номер товара.\nПожалуйста, повторите попытку ввода."); // Вывод сообщения об ошибке
+                        continue; // Переход к следующей итерации цикла
                     }
-                    cart.getFoodstuffs().add(thing);
-                    System.out.println("Товар успешно добавлен в корзину.");
-                    System.out.println("Ваша корзина содержит продукты:");
-                    cart.printFoodstuffs();
+                    cart.getFoodstuffs().add(thing); // Добавление товара в корзину
+                    System.out.println("Товар успешно добавлен в корзину."); // Вывод сообщения об успехе
+                    System.out.println("Ваша корзина содержит продукты:"); // Вывод сообщения
+                    cart.printFoodstuffs(); // Вывод списка продуктов в корзине
                 }
-            } else {
-                System.out.println("Некорректный пункт меню.\nПожалуйста, повторите попытку ввода.");
-                scanner.nextLine();
+            } else { // Если введенное значение не является целым числом
+                System.out.println("Некорректный пункт меню.\nПожалуйста, повторите попытку ввода."); // Вывод сообщения об ошибке
+                scanner.nextLine(); // Считывание некорректного ввода
             }
         }
     }
-
 }
 

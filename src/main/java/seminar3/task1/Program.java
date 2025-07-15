@@ -27,10 +27,9 @@ public class Program {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         // Задача 1
         UserData user = new UserData("Stanislav", 37, "secret");
-        System.out.println("Имя: " + user.getName());
-        System.out.println("Возраст: " + user.getAge());
-        System.out.println("Пароль: " + user.getPassword());
-        System.out.println();
+        System.out.println("Name: " + user.getName());
+        System.out.println("Age: " + user.getAge());
+        System.out.println("Password: " + user.getPassword());
 
         try (FileOutputStream fileOutputStream = new FileOutputStream("userdata.bin");
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream))
@@ -43,7 +42,7 @@ public class Program {
              ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream))
         {
             user = (UserData) objectInputStream.readObject();
-            System.out.println("Объект UserData десериализован.");
+            System.out.println("\nОбъект UserData десериализован.");
         }
 
         System.out.println("Name: " + user.getName());

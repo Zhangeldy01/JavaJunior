@@ -1,19 +1,19 @@
 package homeWork2;
 
 public class Cat extends Animal {
-    private boolean isGinger;
+    private boolean ginger;
 
-    public Cat(String name, int age, boolean isGinger) {
+    public Cat(String name, int age, boolean ginger) {
         super(name, age);
-        this.isGinger = isGinger;
+        this.ginger = ginger;
     }
     public boolean isGinger() {
-        return isGinger;
+        return ginger;
     }
 
     // переопределение метода makeSound()
     @Override
     public void makeSound() {
-        System.out.println("Кошка мурлычет: " + "Meow!");
+        System.out.println(" Кошка мурлычет: " + "Meow!");
     }
 }
